@@ -1,18 +1,18 @@
 module contador(
-	input clk,
-	input reset,
-	output lightonoff);
+	input [0:0] CLOCK_50,
+	input [0:0] KEY,
+	output [0:0] LEGD);
 	
-	reg light;
+	reg light = 0;
 	reg [25:0] count;
-	assign lightonoff = light;
+	assign LEDG = light;
 	
-	always @(posedge clk, reset) begin
-		if(reset == 1) begin
+	always @(posedge CLOCK_50, KEY) begin
+		if(KEY == 1) begin
 			count <= 0;
 			light <= 0;
 		end else begin
-			if(count == 50) begin
+			if(count == 50000000) begin
 				light <= ~light;
 				count <= 0;
 			end else begin
@@ -23,21 +23,21 @@ module contador(
 endmodule
 
 module teste;
-	reg clk;
-	reg reset;
+	reg CLOCK_50;
+	reg KEY;
 	wire light;
 	
-	always #1 clk <= ~clk;
+	always #1 CLOCK_50 <= ~CLOCK_50;
 	
-	contador C(clk, reset, light);
+	contador C(CLOCK_50, KEY, light);
 	
 	initial begin
 	$dumpvars(0, C);
 	#0
-	reset <= 1;
-	clk <= 0;
+	KEY <= 1;
+	CLOCK_50 <= 0;
 	#1
-	reset <= 0;
+	KEY <= 0;
 	#5000
 	$finish;
 	end
