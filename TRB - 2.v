@@ -1,28 +1,22 @@
 module contador(
-	input [0:0] CLOCK_50,
-	input [0:0] KEY,
+	input CLOCK_50,
 	output [0:0] LEGD);
 	
 	reg light = 0;
 	reg [25:0] count;
 	assign LEDG = light;
 	
-	always @(posedge CLOCK_50, KEY) begin
-		if(KEY == 1) begin
+	always @(posedge CLOCK_50) begin
+		if(count == 50000000) begin
+			light <= ~light;
 			count <= 0;
-			light <= 0;
 		end else begin
-			if(count == 50000000) begin
-				light <= ~light;
-				count <= 0;
-			end else begin
-				count <= count+1;
-			end	
+			count <= count+1;
 		end
 	end	
 endmodule
 
-module teste;
+/*module teste;
 	reg CLOCK_50;
 	reg KEY;
 	wire light;
@@ -41,4 +35,4 @@ module teste;
 	#5000
 	$finish;
 	end
-endmodule
+endmodule*/
