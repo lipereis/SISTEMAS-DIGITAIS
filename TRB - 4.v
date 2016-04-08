@@ -1,3 +1,13 @@
+/*UNIVERSIDADE FEDERAL DA FRONTEIRA SUL
+ PROFESSOR: EMÍLIO WERGES
+ ALUNO: FILIPE DOS REIS SANTOS
+ EMAIL: lips.fr@gmail.com
+ COMPILADO COM GCC NO AMBIENTE LINUX MINT KDE 17.3*/
+ 
+				/*IMPLEMENTAÇÃO - TESTE DE COLISÃO NO TRIÂNGULO EM VERILOG*/
+
+
+/*foi utilizado como referência o arquivo postado pelo professor e a ajuda de colegas*/
 
 module sinal(
     input [11:0]x0,
@@ -37,7 +47,7 @@ module tri(
   input [11:0] y2,
   input [11:0] x3,
   input [11:0] y3,
-  output out
+  output in
 );
 
 
@@ -47,7 +57,7 @@ sign P1(x0, y0, x1, y1, x2, y2, g1);
 sign P2(x0, y0, x2, y2, x3, y3, g2);
 sign P3(x0, y0, x3, y3, x1, y1, g3);
 
-assign out = g1 == g2 & g2 == g3;
+assign in = g1 == g2 & g2 == g3;
 
 endmodule
 
